@@ -13,11 +13,15 @@ namespace FlagsAttributeTest
             user.Permission = Permission.Create | Permission.Delete;
             Console.WriteLine(user.Permission);
 
-            //bool cancreate = ((Permission.Create & user.Permission) == Permission.Create);
             bool cancreate = user.Permission.HasPermission(Permission.Create);
-            bool canread = ((Permission.Read & user.Permission) == Permission.Read);
-            bool canupdate = ((Permission.Update & user.Permission) == Permission.Update);
-            bool candelete = ((Permission.Delete & user.Permission) == Permission.Delete);
+
+            //metodo alternativo per verificare la presenza di un permesso
+            //bool canread = ((Permission.Read & user.Permission) == Permission.Read);
+            bool canread = user.Permission.HasPermission(Permission.Read);
+
+            bool canupdate = user.Permission.HasPermission(Permission.Update);
+
+            bool candelete = user.Permission.HasPermission(Permission.Delete);
 
             Console.WriteLine("can create :" + cancreate);
             Console.WriteLine("can read :" + canread);
